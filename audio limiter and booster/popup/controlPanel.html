@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en-US">
+    <head>
+        <link rel="stylesheet" href="controlPanelStyle.css">
+    </head>
+    <body>
+        <p>pre gain</p>
+        <input id="preGainRange"
+        type="range"
+        min="0"
+        max="2"
+        step="0.01"
+        list="preGainMarkers"
+        value="1"></input>
+
+        <datalist id="preGainMarkers">
+            <option value="1"></option>
+        </datalist>
+
+        <p>hard upper limit</p>
+        <input id="hardUpperLimitRange"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        list="hardUpperLimitMarkers"
+        value="0.1"></input>
+
+        <datalist id="hardUpperLimitMarkers">
+            <option value="0.5"></option>
+        </datalist>
+
+        <button id="fixButton">press to fix if not working</button>
+
+
+        <script src="controlPanel.js"></script>
+    </body>
+</html>

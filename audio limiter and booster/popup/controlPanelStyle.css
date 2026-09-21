@@ -1,0 +1,15 @@
+html {
+  background-color: rgb(52, 52, 52);
+  border-style: groove;
+  border-color: rgb(83, 83, 83);
+  border-width: 3px;
+}
+
+p{
+    color: #D65CFF;
+    font-family: monospace;
+    
+}
+button{
+    font-family: monospace;
+}
