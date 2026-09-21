@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "audio limiter and booster",
+  "version": "1.0",
+  "description": "allows for volume multiplying and limiting for those who don't like how a video's audio can get too loud, this limits ONLY when the sound gets too loud, it will not affect audio below the set limit, for example if people are talking in a movie the limit won't take affect if it's set above that volume, but if loud music starts playing the limiter will begin to take effect",
+  "icons": {
+    "48": "icons/48Icon.png",
+    "96": "icons/96Icon.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "volumeEditor@example.com",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*", "*://*.cinejoy.pk/*"],
+      "js": ["volumeEditor.js"]
+    }
+  ],
+  "background": {
+  "scripts": ["background.js"],
+  "type": "module"
+  },
+
+  "permissions": ["scripting","storage"],
+  "web_accessible_resources": [
+    {
+      "resources": ["processor.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "action": {
+    "default_icon": "icons/48Icon.png",
+    "theme_icons": [
+      {
+        "light": "icons/48Icon.png",
+        "dark": "icons/48Icon.png",
+        "size": 32
+      }
+    ],
+    "default_title": "audioEditor",
+    "default_popup": "popup/controlPanel.html"
+  }
+}
