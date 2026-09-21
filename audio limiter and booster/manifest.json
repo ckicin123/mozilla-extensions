@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "audio limiter and booster",
-  "version": "1.0",
+  "version": "1.1",
   "description": "allows for volume multiplying and limiting for those who don't like how a video's audio can get too loud, this limits ONLY when the sound gets too loud, it will not affect audio below the set limit, for example if people are talking in a movie the limit won't take affect if it's set above that volume, but if loud music starts playing the limiter will begin to take effect",
   "icons": {
     "48": "icons/48Icon.png",
