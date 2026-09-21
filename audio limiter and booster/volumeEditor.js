@@ -21,7 +21,6 @@ function updModifierNodeParam(paramName){
 
 function updModifierNodeParams(){
     if (modifierNode!=null){
-        console.log("upding modifier node");
         updModifierNodeParam("preGain");
         updModifierNodeParam("hardUpperLimit");
     }
@@ -40,11 +39,9 @@ function setupMediaElement(elem){
 }
 
 async function init(){
-    console.log("ran");
     await getNewAudioContext();
     vidElems=document.querySelectorAll("video");
     for (i=0; i < vidElems.length; i++){
-        console.log(i);
         vidElem = vidElems[i];
 
         setupMediaElement(vidElem);
@@ -54,7 +51,6 @@ async function init(){
 }
 
 browser.runtime.onMessage.addListener((request) => {
-    console.log(request.content);
     if (request.content=="upd"){
         updModifierNodeParams();
     }
@@ -65,12 +61,32 @@ browser.runtime.onMessage.addListener((request) => {
     return Promise.resolve({ response: "complete" });
 });
 
-init();
-document.addEventListener("click",function(){
-    console.log("click detected");
-    init();
-})
-const mo = new MutationObserver(()=>{
-    init();
+
+
+const mo = new MutationObserver((records)=>{
+    //checking if a video was added, if so reinitialise
+    for (const record of records) {
+
+        if (record.type=="childList"){
+
+            for (const child of record.addedNodes){
+
+                if (child.nodeType != Node.ELEMENT_NODE){ continue; }
+
+                
+                if (child.nodeName == "VIDEO"){
+                    init();
+                    break;
+                }
+
+                if (child.querySelectorAll("video").length > 0){
+                    init();
+                    break;
+                }
+            }
+        }
+        
+    }
 })
 mo.observe(document, {childList:true, subtree:true});
+init();
